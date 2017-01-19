@@ -5,8 +5,9 @@ public class LevelManager : MonoBehaviour {
 
     //DECLARATIONS
     public static string PreviousSceneName;         //Previous Scene Name for Navigation purposes (static)
-    
+
     //DECLARATIONS -end
+
 
 
 
@@ -23,7 +24,7 @@ public class LevelManager : MonoBehaviour {
 
     //QUIT REQUEST
 	public void QuitRequest(){
-	
+
 		Application.Quit ();
 	}
 
