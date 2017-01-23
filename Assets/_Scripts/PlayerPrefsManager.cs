@@ -1,4 +1,5 @@
 ﻿//Wrapper for the Unity PlayerPrefs Method
+// Paul Land
 //****************************************
 
 
@@ -9,8 +10,8 @@ public class PlayerPrefsManager : MonoBehaviour {
 
     //Key Pairs
     const string HIGHSCORE_KEY = "highscore";
-    const string JOYSTICK_SCALE_KEY = "joystick_scale";
-    const string BUTTON1_SCALE_KEY = "button1_scale";
+    const string CONTROLS_SCALE_KEY = "Controls_scale";
+    const string CURRENT_CONTROLS_SIZE_KEY = "controls_size";
 
     
     //Key Pairs -end
@@ -49,31 +50,39 @@ public class PlayerPrefsManager : MonoBehaviour {
 
 
 
-    //JOYSTICK
+    //Controls
     //********
-    //Set the joystick size
-    public static void SetJoystickScale(float joystick_size) {
+    //Set the Controls scale  
+    public static void SetControlsScale(float Controls_size) {  // used by the setting menu
 
-        PlayerPrefs.SetFloat(JOYSTICK_SCALE_KEY, joystick_size);
-
+        PlayerPrefs.SetFloat(CONTROLS_SCALE_KEY, Controls_size);
     }
 
 
-    //Get the joystick size
-    public static float GetJoystickScale() {
+    //Get the Controls size
+    public static float GetControlsScale() {  // used by the setting menu
 
-        return PlayerPrefs.GetFloat(JOYSTICK_SCALE_KEY);
-
+        return PlayerPrefs.GetFloat(CONTROLS_SCALE_KEY);
     }
 
-    //JOYSTICK -end
 
 
+    // Save the User Controls I/F size
+    public static void SetControlsSize(float controls_size) {
+
+        PlayerPrefs.SetFloat(CURRENT_CONTROLS_SIZE_KEY, controls_size);
+    }
 
 
-    //BUTTON1
-    //********
+    //Get the User Controls I/F size
+    public static float GetControlsSize() {
 
-    //BUTTON1 -end
+        return PlayerPrefs.GetFloat(CURRENT_CONTROLS_SIZE_KEY);
+    }
+
+
+    //Controls -end
+
+
 
 }

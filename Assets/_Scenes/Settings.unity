@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 46495990}
   - component: {fileID: 46495989}
   m_Layer: 5
-  m_Name: JoystickScale_lbl
+  m_Name: ControlsScale_lbl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -249,7 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210523676}
   m_Layer: 5
-  m_Name: JOYSTICK
+  m_Name: CONTROLS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,6 @@ RectTransform:
   - {fileID: 46495988}
   - {fileID: 568619078}
   - {fileID: 1268024918}
-  - {fileID: 1794670264}
   - {fileID: 981725187}
   m_Father: {fileID: 822728646}
   m_RootOrder: 2
@@ -334,22 +333,22 @@ Prefab:
     - target: {fileID: 224577363036578760, guid: 9c779bee40028494f9865c8f66031ed4,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 103.67999
+      value: 66.56
       objectReference: {fileID: 0}
     - target: {fileID: 224577363036578760, guid: 9c779bee40028494f9865c8f66031ed4,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 41.599976
+      value: 22.400024
       objectReference: {fileID: 0}
     - target: {fileID: 224577363036578760, guid: 9c779bee40028494f9865c8f66031ed4,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 387.84
+      value: 129.28
       objectReference: {fileID: 0}
     - target: {fileID: 224577363036578760, guid: 9c779bee40028494f9865c8f66031ed4,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 387.84
+      value: 129.28
       objectReference: {fileID: 0}
     - target: {fileID: 224577363036578760, guid: 9c779bee40028494f9865c8f66031ed4,
         type: 2}
@@ -384,6 +383,31 @@ Prefab:
     - target: {fileID: 1412864397185778, guid: 9c779bee40028494f9865c8f66031ed4, type: 2}
       propertyPath: m_Name
       value: PlayerJoystick
+      objectReference: {fileID: 0}
+    - target: {fileID: 114368086445223406, guid: 9c779bee40028494f9865c8f66031ed4,
+        type: 2}
+      propertyPath: joystickSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224504702664629182, guid: 9c779bee40028494f9865c8f66031ed4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.64001465
+      objectReference: {fileID: 0}
+    - target: {fileID: 224504702664629182, guid: 9c779bee40028494f9865c8f66031ed4,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.6399536
+      objectReference: {fileID: 0}
+    - target: {fileID: 224504702664629182, guid: 9c779bee40028494f9865c8f66031ed4,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 224504702664629182, guid: 9c779bee40028494f9865c8f66031ed4,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c779bee40028494f9865c8f66031ed4, type: 2}
@@ -648,22 +672,22 @@ Prefab:
     - target: {fileID: 224687004399068410, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 948.48004
+      value: 604.16003
       objectReference: {fileID: 0}
     - target: {fileID: 224687004399068410, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 41.599976
+      value: 22.400024
       objectReference: {fileID: 0}
     - target: {fileID: 224687004399068410, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 387.84
+      value: 129.28
       objectReference: {fileID: 0}
     - target: {fileID: 224687004399068410, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 387.84
+      value: 129.28
       objectReference: {fileID: 0}
     - target: {fileID: 224687004399068410, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
         type: 2}
@@ -739,6 +763,31 @@ Prefab:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114161804389355724, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
+        type: 2}
+      propertyPath: buttonSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224758220725795004, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.64001465
+      objectReference: {fileID: 0}
+    - target: {fileID: 224758220725795004, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.6399536
+      objectReference: {fileID: 0}
+    - target: {fileID: 224758220725795004, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 224758220725795004, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9882ae41d3c3ea4b8bcb33a1e42fda7, type: 2}
   m_IsPrefabParent: 0
@@ -753,7 +802,7 @@ GameObject:
   - component: {fileID: 568619080}
   - component: {fileID: 568619079}
   m_Layer: 5
-  m_Name: JoystickScale
+  m_Name: ControlsScale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f207a0ca7b58934ab62c7c5ab97a10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resizecontrols: {fileID: 981725188}
 --- !u!1 &846347796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1197,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210523676}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &981725188
 MonoBehaviour:
@@ -1162,80 +1212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myJoystick: {fileID: 212773330}
   myFire: {fileID: 404279984}
---- !u!1 &1194790000
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1194790001}
-  - component: {fileID: 1194790003}
-  - component: {fileID: 1194790002}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1194790001
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1194790000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1794670264}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1194790002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1194790000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 34
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "Save controller \nsize (temp)"
---- !u!222 &1194790003
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1194790000}
 --- !u!1 &1268024917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,7 +1222,7 @@ GameObject:
   - component: {fileID: 1268024918}
   - component: {fileID: 1268024919}
   m_Layer: 5
-  m_Name: Joystick_sldr
+  m_Name: Controls_sldr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4261,128 +4237,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1794670263
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1794670264}
-  - component: {fileID: 1794670267}
-  - component: {fileID: 1794670266}
-  - component: {fileID: 1794670265}
-  m_Layer: 5
-  m_Name: SaveControls_btn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1794670264
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1794670263}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1194790001}
-  m_Father: {fileID: 210523676}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -649}
-  m_SizeDelta: {x: 394, y: 101}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1794670265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1794670263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1794670266}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 981725188}
-        m_MethodName: Resize
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &1794670266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1794670263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1794670267
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1794670263}
 --- !u!1 &2003960443
 GameObject:
   m_ObjectHideFlags: 0

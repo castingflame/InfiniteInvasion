@@ -29,7 +29,10 @@ public class PlayerController : MonoBehaviour {
     public Transform shield;                    //Drop the 'Shield' on inspector
     public Transform shieldPivot;               //Drop the 'ShieldPivot' on inspector
     public float orbitDegreesPerSec = 360.0f;
-
+    //Joystick
+    public UltimateJoystick myJoystick;
+    //Buton
+    public UltimateButton myFire;
 
     //LOCAL
     //Player
@@ -76,6 +79,8 @@ public class PlayerController : MonoBehaviour {
 
 #if UNITY_STANDALONE     // Build for all Windows, Mac or Linux Standalone platforms (Input controls)
 
+        // TODO: Hide Player Controls (UJ UB) 
+        
         // TODO: Add comments to whole section
         
         // Player movement 
@@ -110,6 +115,16 @@ public class PlayerController : MonoBehaviour {
 #else    // Build for all touch platforms (Input controls)
 
         //TODO: Add comments to whole section
+        //Get the size of the player controls from the PPM
+
+        myJoystick.joystickSize = PlayerPrefsManager.GetControlsSize();
+        myFire.buttonSize = PlayerPrefsManager.GetControlsSize();
+
+        
+        myFire.UpdatePositioning();         // Ask UB to update our changes
+        myJoystick.UpdatePositioning();     //ask  UJ to update our changes
+
+
 
 
         //Player movement 
