@@ -38,7 +38,7 @@ public class PlayerPrefsManager : MonoBehaviour {
     //Reset the High Score
     public static void ResetHighScore() {
 
-        Debug.Log("PPM - Going to reset the High Score ");
+        //Debug.Log("PPM - Going to reset the High Score ");
         PlayerPrefs.SetFloat(HIGHSCORE_KEY, 0);
 
     }

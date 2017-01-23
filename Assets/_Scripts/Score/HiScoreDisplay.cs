@@ -17,7 +17,7 @@ public class HiScoreDisplay : MonoBehaviour {
 
         Text highscoreField = GetComponent<Text>();
 
-        //Display the High Score for the first time
+        //Display the High Score for the first time from the PPM
         highscoreField.text = PlayerPrefsManager.GetHighScore().ToString();
 
 
@@ -28,7 +28,7 @@ public class HiScoreDisplay : MonoBehaviour {
 
         Text highscoreField = GetComponent<Text>();
 
-        //Get the HighScoreReset.sc from the resetScript_obj
+        //Get the HighScoreReset.sc from the resetScript_obj to look at the reset flag
         HiScoreReset script = resetScript_obj.GetComponent<HiScoreReset>();
 
 

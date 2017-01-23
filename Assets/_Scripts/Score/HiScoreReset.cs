@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
 
 public class HiScoreReset : MonoBehaviour {
 
@@ -9,13 +7,6 @@ public class HiScoreReset : MonoBehaviour {
     public bool hasReset = false;       //Flag to say script has reset.
 
     //Declarations -end
-
-
-
-    void Update () {
-
-       
-        }//Update -end
 
 
 

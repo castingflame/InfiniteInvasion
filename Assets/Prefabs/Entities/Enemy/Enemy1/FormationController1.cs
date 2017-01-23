@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+//using System.Collections;
 
 public class FormationController1 : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class FormationController1 : MonoBehaviour
     //Enemy
     public GameObject enemyPrefab;          //Drop the Enemy Prefab here in the Unity Inspector   
   
-
+    //
 
     public float formWidth;                 //Enemy formation width - NOTE! set in inspector
     public float formHeight;                //Enemy formation height - NOTE! set in inspector

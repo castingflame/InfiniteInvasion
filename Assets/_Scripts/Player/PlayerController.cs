@@ -4,8 +4,6 @@
 /* Version: 0.0.3 */
 
 using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 
 
 public class PlayerController : MonoBehaviour {
@@ -101,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 
             InvokeRepeating("Fire", 0.0001f, firingRate);
             }
-
+            
 
         // Projectile -end
 
