@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour {
     public float orbitDegreesPerSec = 360.0f;
     //Joystick
     public UltimateJoystick myJoystick;
-    //Buton
+    //Fire Buton
     public UltimateButton myFire;
 
     //LOCAL
@@ -67,11 +67,22 @@ public class PlayerController : MonoBehaviour {
 
         xmin = leftmost.x + padding;
         xmax = rightmost.x - padding;
-        
-        }//Start() -end
 
- 
-    
+
+
+        //Get the size of the player controls from the PPM 
+        //Also applies changes made to the controls in the setting menu
+        myJoystick.joystickSize = PlayerPrefsManager.GetControlsSize();
+        myFire.buttonSize = PlayerPrefsManager.GetControlsSize();
+        myFire.UpdatePositioning();         // ask UB to update our changes
+        myJoystick.UpdatePositioning();     // ask UJ to update our changes
+
+
+
+    }//Start() -end
+
+
+
 
 
     void Update () {
@@ -79,8 +90,6 @@ public class PlayerController : MonoBehaviour {
 
 #if UNITY_STANDALONE     // Build for all Windows, Mac or Linux Standalone platforms (Input controls)
 
-        // TODO: Hide Player Controls (UJ UB) 
-        
         // TODO: Add comments to whole section
         
         // Player movement 
@@ -104,28 +113,16 @@ public class PlayerController : MonoBehaviour {
 
             InvokeRepeating("Fire", 0.0001f, firingRate);
             }
-            
-
+       
         // Projectile -end
 
 
 
 
 
-#else    // Build for all touch platforms (Input controls)
-
+#else   // Build for all touch platforms (Input controls)
         //TODO: Add comments to whole section
-        //Get the size of the player controls from the PPM
-
-        myJoystick.joystickSize = PlayerPrefsManager.GetControlsSize();
-        myFire.buttonSize = PlayerPrefsManager.GetControlsSize();
-
         
-        myFire.UpdatePositioning();         // Ask UB to update our changes
-        myJoystick.UpdatePositioning();     //ask  UJ to update our changes
-
-
-
 
         //Player movement 
         float shipMovement = UltimateJoystick.GetHorizontalAxis("PlayerJoystick");
