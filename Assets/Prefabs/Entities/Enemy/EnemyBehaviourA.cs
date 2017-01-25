@@ -61,7 +61,7 @@ public class EnemyBehaviourA : MonoBehaviour {
     //ENEMY DEAD!
     void Die() {
         Destroy(gameObject);            //Destroy our enemy game object
-        scoreKeeper.Score(scoreValue);  //Hit enemy. Pass 'scoreValue' to the ScoreKeeper
+        //scoreKeeper.Score(scoreValue);  //Hit enemy. Pass 'scoreValue' to the ScoreKeeper
         AudioSource.PlayClipAtPoint(deathSound, transform.position);  //Play death SFX
     } //void Die -end
 
