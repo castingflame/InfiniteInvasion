@@ -5,14 +5,19 @@ Game: Infinite Invasion
 Unity Script: DataManager.cs
 Location: /_Scripts/DataManager
 Parent: DataManager prefab object used in the game levels
-Description: Controls order of execution of scripts & methods for
-            displaying, updating and saving the Score, Record Score,
+Description: Controls order of execution of scripts & methods that
+            display, update and save the Score, Record Score,
             Levels, Shield, Health, ...
+            
+            DOES do - Asks other scripts to do stuff. This may involved passing data between scripts 
+            Does NOT do - Work out stuff or make decisions.. apart from passing decision to pass values or not
+            
 
 Methods:    Score_AddTo(), Score_SubtractFrom(), Score_NewRecord(), 
-            Shield_GetValue(), Shield_SetValue(),
-            Health_GetValue(), Health_SetValue(),
+            Shield_Initialise(), Shield_GetValue(), Shield_SetValue(), Shield_GetStatus(), Shield_SetStatus(),
+            Health_Initialise(), Health_GetValue(), Health_SetValue(),
             InvasionLevel_GetValue(), InvasionLevel_SetValue(),
+            PlayerHit(),
 
 
 NOTES: Part of the DataManager object
@@ -21,18 +26,19 @@ NOTES: Part of the DataManager object
 PROJECT PLAN FOR DataManager
 ============================
 Overview - Migrate all data (scoring, shield, health, etc) management functions from other 
-scripts to here. Manage all data processing(ScoreKeeper) and display(HUD) tasks from here in DM.
+scripts to here. Manage all data processing(NumberCruncher) and display(HUD) tasks from here in DM.
 
       Job List
       --------
 DONE  1.Create Declarations | Inspector - with links to the other scripts
       required HUD.cs, ScoreKeeper.cs, PlayerPrefsManager.cs
-DONE  2.Public inspector link on Scorekeeper.cs for PlayerPrefsManager_obj object is not needed as PPM is 'Static'
-      3.DM - Create some basic Methods that outline the functionality for DM
+DONE  2.Public inspector link on NumberCruncher.cs for PlayerPrefsManager_obj object is not needed as PPM is 'Static'
+DONE  3.DM - Create some basic Methods that outline the functionality for DM
       4.DM - Gather initial data from ScoreKeeper.cs and pipe it to HUD to display it on the screen
-      5.Remove all the score functionality in Player.cs and move it to DataManager.cs
+      
+      END - Remove all the score functionality in Player.cs and move it to DataManager.cs
 
-/*******************************************************************************************************/
+*******************************************************************************************************/
 
 using UnityEngine;
 
@@ -40,20 +46,27 @@ public class DataManager : MonoBehaviour {
 
     /* -----< DECLARATIONS >----- */
     //INSPECTOR
-    public HUD hud;
-    public ScoreKeeper scorekeeper;
-    //PlayerPrefsManager is not needed as its 'Static'
-
-
-
-    //SCRIPT
+    //Script Connections
+    public HUD hud;                             // Acess to object
+    public NumberCruncher numbercruncher;       // Acess to object
+    public PlayerController playercontroller;   // Acess to object
+    //NOTE:PlayerPrefsManager is not needed as is is a 'Static' class(Method)
+    
+   
+                                                
     /* -----< DECLARATIONS - END >----- */
+
+
 
 
 
     /* -----< START FUNCTIONALITY >----- */
     //Start
     void Start() {
+
+   
+
+        //INITIALISATION -END
 
     }//Start() -end
     /* -----< START FUNCTIONALITY -END >----- */
@@ -80,8 +93,7 @@ public class DataManager : MonoBehaviour {
         //2.Tell HUD new value
 
     }//Score_SubtractFrom() -end
-
-
+    
 
 
     // New record score
@@ -98,35 +110,33 @@ public class DataManager : MonoBehaviour {
 
 
 
+    
 
-    /* -----< SHIELD FUNCTIONALITY >----- */
-    // Get value of shield
-    public void Shield_GetValue(float shield) {
+    // Get status of shield
+    public bool Shield_GetStatus() {  //normally called by Player.cs
 
-        //Shield value get request
-        //1.Tell ScoreKeeper and get a return 
-        //2.Pipe that return to HUD
+        bool nc_return = numbercruncher.Shield_GetStatus();
 
-    }//Shield_GetValue() -end
+        if (nc_return == false) {
+            //Tell HUD the shield is down
+            }
+       //else if logic for shield up?
+        
+        return numbercruncher.Shield_GetStatus();  //return value
 
-
-
-
-    // Set value of shield
-    public void Shield_SetValue(float shield) {
-
-        //Shield value set request
-        //1.Tell ScoreKeeper 
-        //2.Tell HUD new value
 
     }//Shield_SetValue() -end
+
+
+
+    
+
     /* -----< SHIELD FUNCTIONALITY -END >----- */
 
 
 
 
 
-    /* -----< HEALTH FUNCTIONALITY >----- */
     // Get value of health
     public void Health_GetValue(float health) {
 
@@ -135,20 +145,6 @@ public class DataManager : MonoBehaviour {
         //2.Pipe that return to HUD
 
     }//Health_GetValue() -end
-
-
-
-
-    // Set value of health
-    public void Health_SetValue(float health) {
-
-        //health value set request
-        //1.Tell ScoreKeeper 
-        //2.Tell HUD new value
-
-    }//Health_SetValue() -end
-    /* -----< HEALTH FUNCTIONALITY -END >----- */
-
 
 
 
@@ -175,26 +171,26 @@ public class DataManager : MonoBehaviour {
         //2.Tell HUD new value
 
     }//InvasionLevel_SetValue() -end
-    /* -----< INVASION LEVEL FUNCTIONALITY -END >----- */
+     /* -----< INVASION LEVEL FUNCTIONALITY -END >----- */
 
 
 
 
+    /* -----< PLAYER FUNCTIONALITY >----- */
+    // Playey hit!
+    public void Player_Hit(float hit) {
 
 
+        //1.Tell NU and .....
+        numbercruncher.Player_Hit(hit);                         //Tell NumberCruncher
 
 
+        //...
 
 
+    }//Player_Hit() -end
+    /* -----< PLAYER FUNCTIONALITY -END >----- */
 
-
-    /*
-        public static float SetScore() {
-            //work out the score .....
-            return score;
-        }//SetScore() -end
-
-    */
 
 
 

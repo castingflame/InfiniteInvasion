@@ -103,11 +103,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011311464088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b8f147fc464d0f47bfe8481df850ef9, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ee18df478121004b917c384519c4182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nc: {fileID: 0}
   projectile: {fileID: 1000011652748308, guid: 2436e7dcc1669b040ac07e180e8c8565, type: 2}
-  health: 500
+  enemyhealth: 150
   projectileSpeed: 2
   shotsPerSecond: 0.1
   scoreValue: 500

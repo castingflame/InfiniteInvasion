@@ -12,7 +12,7 @@ public class PlayerPrefsManager : MonoBehaviour {
     const string HIGHSCORE_KEY = "highscore";
     const string CONTROLS_SCALE_KEY = "Controls_scale";
     const string CURRENT_CONTROLS_SIZE_KEY = "controls_size";
-
+    
     
     //Key Pairs -end
 
@@ -21,7 +21,7 @@ public class PlayerPrefsManager : MonoBehaviour {
     //HIGH SCORES 
     //***********
     //Set the High Score
-    public static void SetHighScore(float highscore) {
+    public static void HighScore_Set(float highscore) {
 
         PlayerPrefs.SetFloat(HIGHSCORE_KEY, highscore);
 
@@ -29,15 +29,16 @@ public class PlayerPrefsManager : MonoBehaviour {
 
     
     //Get the High Score
-    public static float GetHighScore() {
+    public static float HighScore_Get() {
 
-        return PlayerPrefs.GetFloat (HIGHSCORE_KEY);
-
+        
+        return PlayerPrefs.GetFloat(HIGHSCORE_KEY);
+        
     }
 
 
     //Reset the High Score
-    public static void ResetHighScore() {
+    public static void HighScore_Reset() {
 
         //Debug.Log("PPM - Going to reset the High Score ");
         PlayerPrefs.SetFloat(HIGHSCORE_KEY, 0);
