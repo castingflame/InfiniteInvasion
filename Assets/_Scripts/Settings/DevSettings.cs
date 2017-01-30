@@ -5,8 +5,6 @@ public class DevSettings : MonoBehaviour {
 
     /* -----< DECLARATIONS >----- */
     //INSPECTOR
- 
-
     //Score
     public Text highScore_txt;
     public Text NukePPKeys_txt;
