@@ -85,5 +85,10 @@ public class PlayerPrefsManager : MonoBehaviour {
     //Controls -end
 
 
+    public static void NukePrefs() {
+        PlayerPrefs.DeleteAll();
+    }
 
-}
+
+
+}//THE END

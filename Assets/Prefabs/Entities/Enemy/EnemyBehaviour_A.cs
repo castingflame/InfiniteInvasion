@@ -108,7 +108,7 @@ public class EnemyBehaviour_A : MonoBehaviour {
     void Die() {
 
        
-        nc.Score_Add(scoreValue);  //Hit enemy. Pass 'scoreValue' to the ScoreKeeper
+        nc.Score_Add(scoreValue);       //Enemy killed. Pass scoreValue to Number Cruncher
         AudioSource.PlayClipAtPoint(deathSound, transform.position);  //Play death SFX
         Destroy(gameObject);            //Destroy our enemy game object
         

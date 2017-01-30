@@ -21,9 +21,6 @@ Methods:    PUBLIC
             Score(), 
 
 
-
-
-
 NOTES: Part of the DataManager object
 
 
@@ -48,6 +45,8 @@ using UnityEngine.UI;
 
 public class NumberCruncher : MonoBehaviour {
 
+
+
     /* -----< DECLARATIONS >----- */
     //INSPECTOR
     //HUD
@@ -69,10 +68,6 @@ public class NumberCruncher : MonoBehaviour {
     public float score;                         //Current score
     public float highScore;                     //Current highscore
     public float newHighScore;                  // 
-    
-
-
-
     /* -----< DECLARATIONS -END >----- */
 
 
@@ -82,21 +77,29 @@ public class NumberCruncher : MonoBehaviour {
 
     void Awake() {
 
+        // Dont destroy the NumberCruncher when a new scene loads
+        GameObject.DontDestroyOnLoad(gameObject);
+       
+
+
+
         //INITIALISATION
-        
         //SHIELD
         //Set the shield status to UP
         shieldStatus = true;
         //Set some initial default values for stuff
-        playerShield = 500;   //Tweekable in script
-        playerHealth = 300;   //Tweekable in script
-        //Save initial values for the UltimateStatusBars Max value
+        playerShield = 100;   //Tweekable in script
+        playerHealth = 100;   //Tweekable in script
+        //Save initial values for the UltimateStatusBar(s) Max value
         playerShieldMax = playerShield;
         playerHealthMax = playerHealth;
 
         //SCORE
         Score_Reset();
-        HighScore_Get();
+        //HighScore_Set(10);  // Use this to reset the high score at design time
+
+        highScore = HighScore_Get();        // Get the high score
+        HighScore_Display(highScore);       // Update the On-Screen score
 
 
         //INITIALISATION -END
@@ -109,8 +112,7 @@ public class NumberCruncher : MonoBehaviour {
 
     /* -----< UPDATE FUNCTIONALITY >----- */
     private void Update() {
-        HighScore_Display();
-        Score_Display();
+        Score_Display();   //Note: High Score 'display' is in scores logic
         /* -----< UPDATE FUNCTIONALITY -END >----- */
 
     }
@@ -223,7 +225,7 @@ public class NumberCruncher : MonoBehaviour {
         if (shieldStatus == true) {     // Shield is UP?
 
             playerShield -= hit;        //subtract hit value from shield
-            Debug.Log("NC:Shield Status: " + shieldStatus + " value:" + playerShield);
+            // Debug.Log("NC:Shield Status: " + shieldStatus + " value:" + playerShield);
             hud.PlayerShield_Display(playerShield, playerShieldMax);
             if (playerShield <= 0) {    //Shield Down?
                 shieldStatus = false;
@@ -233,7 +235,7 @@ public class NumberCruncher : MonoBehaviour {
         if (shieldStatus == false) {    // Shield is DOWN?
 
             playerHealth -= hit;        //subtract hit value from health
-            Debug.Log("NC:Health value:" + playerHealth);
+            // Debug.Log("NC:Health value:" + playerHealth);
             hud.PlayerHealth_Display(playerHealth, playerHealthMax);
 
             if (playerHealth <= 0) {        //Player Dead?
@@ -257,18 +259,6 @@ public class NumberCruncher : MonoBehaviour {
 
     
 
-
-    public void Score(int points) {
-
-        score += points;                             //Adds points to current score
-        
-        if (score > highScore) {                     //New High Score?
-            HighScore_Set(score);                    //Update High Score             
-        }
-    }//Score() -end
-
-
-
     //Resets the Score
     public void Score_Reset() {
         score = 0;                          //Resets the score variable     
@@ -283,14 +273,23 @@ public class NumberCruncher : MonoBehaviour {
 
 
     // Add to score
-    public float Score_Add(float newscore) {
+    public void Score_Add(float newscore) {
         //A new score has occured
 
-        score += newscore;              //Compute score
+        score += newscore;                  //Compute score
+        if (score >= highScore) {           //New High Score?
+            highScore = score;              //Update the High Score value 
+            HighScore_Display(highScore);   //Display the New High Score
+            
+        }
+
         hud.Score_Display(score);       //Sent it to HUD
 
-        return newscore;
-    }//Score_AddTo() -end
+
+
+
+
+    }//Score_Add() -end
 
 
     // Subtract from score
@@ -315,27 +314,25 @@ public class NumberCruncher : MonoBehaviour {
     /* -----< HIGH SCORE FUNCTIONALITY >----- */
     // Get the high score
     public float HighScore_Get() {
-        highScore = PlayerPrefsManager.HighScore_Get();    //Get the current high score from the PPM
-
-        Debug.Log("NC: HighScore_Get():" + highScore);
-
-        return highScore;                                 //Return the score.
+        float hs = PlayerPrefsManager.HighScore_Get();    //Get the current high score from the PPM     
+        // Debug.Log("hs=" + hs);
+        return hs;                                 //Return the score.
+       
     }
 
 
 
     public void HighScore_Set(float newhighscore) {
-        //Debug.Log("NC: HighScore_Set():" + newhighscore);
-        hud.HighScore_Display(newhighscore);
-     
+        PlayerPrefsManager.HighScore_Set(newhighscore);        //Write the high score to the PPM
+
     }
 
 
 
 
-    public void HighScore_Display() {
-        hud.HighScore_Display(highScore);
-
+    public void HighScore_Display(float newhighscore) {
+        hud.HighScore_Display(newhighscore);
+        //Debug.Log("New High Score" + newhighscore);
     }
 
 
@@ -348,18 +345,20 @@ public class NumberCruncher : MonoBehaviour {
 
 
     /* -----< ON DESTROY FUNCTIONALITY -END >----- */
+    // NOTE: After the lose scene has it's data it must do a 
+    // Destroy(nc.gameObject) imediately otherwise the highscore
+    // will not be updated via the section below.
+
     void OnDestroy() {
-
-        //High Score
-        if (highScore > PlayerPrefsManager.HighScore_Get()) {   //If our high score is > than in PPM
-            PlayerPrefsManager.HighScore_Set(highScore);        //Write the high score to the PPM
+        //High Score      
+        //Debug.Log("highScore:" + highScore);
+        //Debug.Log("HighScore_Get():" + HighScore_Get());
+        if (highScore > HighScore_Get()) {   //If our high score is > than in PPM
+            
+            HighScore_Set(highScore);        //Write the high score to PPM
+            //Debug.Log("HighScore_Set then Get:" + HighScore_Get());
         }
-
-        Debug.Log("NC: Destroyed!");
-
-
-
-    /* -----< ON DESTROY FUNCTIONALITY -END >----- */
+        /* -----< ON DESTROY FUNCTIONALITY -END >----- */
 
 
     }

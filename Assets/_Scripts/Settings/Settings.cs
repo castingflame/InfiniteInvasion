@@ -10,8 +10,6 @@ public class Settings : MonoBehaviour {
 
     public ResizeControls resizecontrols;
 
-   
-
 
     private Slider ControlsSlider;                      //Var for On-screen Controls size slider
     private Text ControlsSizeField;                     //Var for On-screen Controls Size field
@@ -22,33 +20,17 @@ public class Settings : MonoBehaviour {
     private int currentControlsScale_int;               //Var to hold parsed currentControlsScale string to int
 
     //private float currentControlsSize;                  //Var to hold Controls size before it get written to PPM
-
-
     public const float CONTROLS_SCALE_1 = 1f;
     public const float CONTROLS_SCALE_2 = 1.2f;
     public const float CONTROLS_SCALE_3 = 1.4f;
     public const float CONTROLS_SCALE_4 = 1.6f;
     public const float CONTROLS_SCALE_5 = 1.8f;
 
-
-
-
     //DECLARATIONS -end;
 
 
 
-    private void Awake() {
-        
-        //HIDE OBJECTS
-        //ETCInput.SetControlVisible("Controls", false);  //Hide The Controls until the scale is discovered
-        
-        
-        
-        //HIDE OBJECTS -end
-
-
-        }// Awake() -end
-
+ 
 
 
     private void Start() {
