@@ -10,13 +10,12 @@ public class PlayerController : MonoBehaviour {
 
 
     /* -----< DECLARATIONS >----- */
-
     //INSPECTOR
+    //Script Connections
+    public NumberCruncher nc;                   // Acess to object
     //Player
     public float padding = 0.5f;                // Player object padding to surroundings
-    public float playerHealth;                  // Set in the Inspector
-    public float playerShield;                  // Default strength of the Players Shield
-    //Projectile
+     //Projectile
     public float projectileSpeed;               // Set in the Inspector
     public float firingRate;                    // Set in the Inspector
     public float projectileDamage;              // Var holds the collided projectiles damage value
@@ -31,35 +30,29 @@ public class PlayerController : MonoBehaviour {
     public float orbitDegreesPerSec = 360.0f;
     //Joystick
     public UltimateJoystick myJoystick;
-    //Buton
+    //Fire Buton
     public UltimateButton myFire;
 
     //LOCAL
     //Player
     private float speed = 5.0f;
-    private float playerShieldMax;              // Save value for USB
-    private float playerHealthdMax;             // Save valur for USB
-    public bool playerShieldStatus = true;      // Player shield up or down?
     //Projectile
     public GameObject projectile;
+    //Shield
+    private bool playerShieldStatus;            // Player shield up or down?
     //Controls
     float xmin;                                 // Touch Screen xmin;
     float xmax;                                 // Touch Screen xmax; 
-   
-    /* -----< DECLARATIONS - END >----- */ 
+
+
+    /* -----< DECLARATIONS - END >----- */
 
 
 
     void Start() {
 
-        //Save Max Shield value for the Ultimate UI status bar
-        playerShieldMax = playerShield;
-        playerHealthdMax = playerHealth;
+      
 
-       //INITIALISE ON-SCREEN
-        UltimateStatusBar.UpdateStatus("PlayerShield", playerShield, playerShieldMax); //Update Screen with our default Player Shield value
-        UltimateStatusBar.UpdateStatus("PlayerHealth", playerHealth, playerHealthdMax);//Update Screen with our default Player Health value
-       
         //TODO: Add comments to whole section
         float distance = transform.position.z - Camera.main.transform.position.z;
         Vector3 leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance));
@@ -67,11 +60,22 @@ public class PlayerController : MonoBehaviour {
 
         xmin = leftmost.x + padding;
         xmax = rightmost.x - padding;
-        
-        }//Start() -end
 
- 
-    
+
+
+        //Get the size of the player controls from the PPM 
+        //Also applies changes made to the controls in the setting menu
+        myJoystick.joystickSize = PlayerPrefsManager.GetControlsSize();
+        myFire.buttonSize = PlayerPrefsManager.GetControlsSize();
+        myFire.UpdatePositioning();         // ask UB to update our changes
+        myJoystick.UpdatePositioning();     // ask UJ to update our changes
+
+
+
+    }//Start() -end
+
+
+
 
 
     void Update () {
@@ -79,8 +83,6 @@ public class PlayerController : MonoBehaviour {
 
 #if UNITY_STANDALONE     // Build for all Windows, Mac or Linux Standalone platforms (Input controls)
 
-        // TODO: Hide Player Controls (UJ UB) 
-        
         // TODO: Add comments to whole section
         
         // Player movement 
@@ -104,28 +106,16 @@ public class PlayerController : MonoBehaviour {
 
             InvokeRepeating("Fire", 0.0001f, firingRate);
             }
-            
-
+       
         // Projectile -end
 
 
 
 
 
-#else    // Build for all touch platforms (Input controls)
-
+#else   // Build for all touch platforms (Input controls)
         //TODO: Add comments to whole section
-        //Get the size of the player controls from the PPM
-
-        myJoystick.joystickSize = PlayerPrefsManager.GetControlsSize();
-        myFire.buttonSize = PlayerPrefsManager.GetControlsSize();
-
         
-        myFire.UpdatePositioning();         // Ask UB to update our changes
-        myJoystick.UpdatePositioning();     //ask  UJ to update our changes
-
-
-
 
         //Player movement 
         float shipMovement = UltimateJoystick.GetHorizontalAxis("PlayerJoystick");
@@ -169,55 +159,15 @@ public class PlayerController : MonoBehaviour {
         if (collidedProjectile) {                                       //Player collided with projectile
             AudioSource.PlayClipAtPoint(hitSound, transform.position);  //Play hit SFX
             projectileDamage = collidedProjectile.GetDamage();          //Get the damage value from collided projectile 
-            collidedProjectile.Hit();       //Finished talking to projectile. Tell projectile it hit us so it will destroy itself.
-            Shield();                       //Check shield
-     
-            if (playerShieldStatus == false) {      //Shields down. Player takes damage.
-                Health();   //Check health              
-                }
-            }
-
+            collidedProjectile.Hit();                                   //Finished talking to projectile. Tell projectile it hit us so it will destroy itself.
+            nc.Player_Hit(projectileDamage);                            //Pass the damage value to NumberCrumcher
+        }
     }//OnTriggerEnter2D -end
 
     /* -----< PLAYER HIT!!!!! -END >----- */
 
+ 
 
-
-    void Shield() {
-        
-        if (playerShieldStatus == true) {       //Still some shield left so negate the 'hit' value
-            playerShield -= projectileDamage;   //Take the damage value from shield total
-
-            if (playerShield < 0) {             //Shields 0?
-                playerShieldStatus = false;     //Set Shield 'down' status.
-                playerShield = 0;               //Set to 0 to make the On-Screen not negative
-                }
-
-            UltimateStatusBar.UpdateStatus("PlayerShield", playerShield, playerShieldMax);
-            }
-        }//Shield() -end
-
-
-
-    void Health() {
-
-        playerHealth -= projectileDamage;   //Take damage to players health.
-
-        if (playerHealth <= 0) {
-            Die();                          //If health run out die!
-            }
-
-        UltimateStatusBar.UpdateStatus("PlayerHealth", playerHealth, playerHealthdMax);//Update Screen with our default Player Health value
-        }//Health() -end
-
-
-
-    void Die() {
-        //TODO: Add comments to whole section
-        Destroy(gameObject);      
-        LevelManager levMan = GameObject.Find("LevelManager").GetComponent<LevelManager>(); //Get the LevelManager.sc attached to the LevelManager game object 
-        levMan.LoadLevel("Lose");
-        }//Die() -end
 
 
 
