@@ -8,9 +8,9 @@ public class StartMenu : MonoBehaviour {
 	void Start () {
 
         // Ask PPM to setup Persistant Storage
+        //Debug.Log("StartMenu: Initialising PPM");
         PlayerPrefsManager.Initialise();
-
-
+        
     }
 	
 

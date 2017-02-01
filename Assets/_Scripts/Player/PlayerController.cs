@@ -65,8 +65,8 @@ public class PlayerController : MonoBehaviour {
 
         //Get the size of the player controls from the PPM 
         //Also applies changes made to the controls in the setting menu
-        myJoystick.joystickSize = PlayerPrefsManager.GetControlsSize();
-        myFire.buttonSize = PlayerPrefsManager.GetControlsSize();
+        myJoystick.joystickSize = PlayerPrefsManager.ControlsSize_Get();
+        myFire.buttonSize = PlayerPrefsManager.ControlsSize_Get();
         myFire.UpdatePositioning();         // ask UB to update our changes
         myJoystick.UpdatePositioning();     // ask UJ to update our changes
 

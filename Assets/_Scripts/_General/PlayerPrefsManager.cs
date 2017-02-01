@@ -15,24 +15,46 @@ public class PlayerPrefsManager : MonoBehaviour {
     //Key Pairs -end
 
 
-    public static void Initialise()
-    {
+    public static void Initialise(){
 
         // Initialise Player Preferences
         // If a key does not exist, create it.
-      
-        if (PlayerPrefs.HasKey("HIGHSCORE_KEY") == false)
+
+        //Player prefs initialisation for Player 'highscore'
+        if (PlayerPrefs.HasKey(HIGHSCORE_KEY) == false){        //Prefs missing 
+            HighScore_Set(10);                              //Create a new Pref 
+            //Debug.Log("PPM: Created Pref for highscore = " + HighScore_Get());
+        }
+        else if (PlayerPrefs.HasKey(HIGHSCORE_KEY) == true)     //Prefs found
         {
-            Debug.Log("PPM: Missing HIGHSCORE_KEY");
+            //Debug.Log("PPM: Found - highscore");
         }
 
 
 
+        //Player prefs initialisation for 'Controls Scale'
+        if (PlayerPrefs.HasKey(CONTROLS_SCALE_KEY) == false){        //Prefs missing 
+            ControlsScale_Set(1);                                    //Create a new Pref 
+            //Debug.Log("PPM: Created Pref for Controls Scale = " + ControlsScale_Get());
+        }
+        else if (PlayerPrefs.HasKey(CONTROLS_SCALE_KEY) == true)     //Prefs found 
+        {
+            //Debug.Log("PPM: Found - Controls Scale");
+        }
 
-    }
 
 
+        //Player prefs initialisation for Player Controls Size
+        if (PlayerPrefs.HasKey(CURRENT_CONTROLS_SIZE_KEY) == false){        //Prefs missing
+            ControlsSize_Set(1);                                            //Create a new Pref
+            //Debug.Log("PPM: Created Pref for Controls Size = " + ControlsSize_Get());
+        }
+        else if (PlayerPrefs.HasKey(CURRENT_CONTROLS_SIZE_KEY) == true)     //Prefs found 
+        {
+            //Debug.Log("PPM: Found - Controls Size");
+        }
 
+    }//Initialise() -end
 
 
 
@@ -41,27 +63,20 @@ public class PlayerPrefsManager : MonoBehaviour {
     //***********
     //Set the High Score
     public static void HighScore_Set(float highscore) {
-
         PlayerPrefs.SetFloat(HIGHSCORE_KEY, highscore);
-
     }
 
     
     //Get the High Score
     public static float HighScore_Get() {
-
-        
         return PlayerPrefs.GetFloat(HIGHSCORE_KEY);
-        
-    }
+        }
 
 
     //Reset the High Score
     public static void HighScore_Reset() {
-
         //Debug.Log("PPM - Going to reset the High Score ");
         PlayerPrefs.SetFloat(HIGHSCORE_KEY, 0);
-
     }
 
     //HIGH SCORES -end
@@ -70,38 +85,32 @@ public class PlayerPrefsManager : MonoBehaviour {
 
 
 
-    //Controls
+    //CONTROLS
     //********
     //Set the Controls scale  
-    public static void SetControlsScale(float Controls_size) {  // used by the setting menu
-
+    public static void ControlsScale_Set(float Controls_size) {  // used by the setting menu
         PlayerPrefs.SetFloat(CONTROLS_SCALE_KEY, Controls_size);
     }
 
 
     //Get the Controls size
-    public static float GetControlsScale() {  // used by the setting menu
-
+    public static float ControlsScale_Get() {  // used by the setting menu
         return PlayerPrefs.GetFloat(CONTROLS_SCALE_KEY);
     }
 
 
 
     // Save the User Controls I/F size
-    public static void SetControlsSize(float controls_size) {
-
+    public static void ControlsSize_Set(float controls_size) {
         PlayerPrefs.SetFloat(CURRENT_CONTROLS_SIZE_KEY, controls_size);
     }
 
 
     //Get the User Controls I/F size
-    public static float GetControlsSize() {
-
+    public static float ControlsSize_Get() {
         return PlayerPrefs.GetFloat(CURRENT_CONTROLS_SIZE_KEY);
     }
-
-
-    //Controls -end
+    //CONTROLS -end
 
 
     public static void NukePrefs() {

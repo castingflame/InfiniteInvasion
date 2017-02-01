@@ -66,7 +66,7 @@ public class Settings : MonoBehaviour {
 
     void ShowTheControls() {    // This method pnly gets run at start to load Controls size from PPM values
 
-        currentControlsScale_string = PlayerPrefsManager.GetControlsScale().ToString();     //Get Controls Scale from PPM
+        currentControlsScale_string = PlayerPrefsManager.ControlsScale_Get().ToString();     //Get Controls Scale from PPM
 
         //TODO: if ... error check if sze is not within expeted range
         
@@ -75,8 +75,8 @@ public class Settings : MonoBehaviour {
 
         //Virgin game?  -catch if Controls Scale = 0 (for some weird reason!)
         if (currentControlsScale_int == 0) {          // Initial run of game will not have a ControlsScale value saved in the PPs
-            PlayerPrefsManager.SetControlsScale(1);   // save the new scale in PPM
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_1);  // save the new size in PPM  
+            PlayerPrefsManager.ControlsScale_Set(1);   // save the new scale in PPM
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_1);  // save the new size in PPM  
             Debug.LogError("ShowTheControls() | currentControlsScale_int = 0 -- Problem with the logic!!!");
         }
 
@@ -84,34 +84,34 @@ public class Settings : MonoBehaviour {
         else if (currentControlsScale_int == 1) {   
             ControlsSizeField.text = "1";             //Update On-Screen Controls
             ControlsSlider.value = 1;                 //Update the On-Screen slider
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_1);  // save the new size in PPM              
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_1);  // save the new size in PPM              
         }
         //Controls Scale 2?
         else if (currentControlsScale_int == 2) {    
             ControlsSizeField.text = "2";             //Update On-Screen Controls
             ControlsSlider.value = 2;                 //Update the On-Screen slider
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_2);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_2);  // save the new size in PPM 
         }
 
         //Controls Scale 3?
         else if (currentControlsScale_int == 3) {     
             ControlsSizeField.text = "3";             //Update On-Screen Controls
             ControlsSlider.value = 3;                 //Update the On-Screen slider
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_3);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_3);  // save the new size in PPM 
         }
 
         //Controls Scale 4?
         else if (currentControlsScale_int == 4) {    
             ControlsSizeField.text = "4";             //Update On-Screen Controls
             ControlsSlider.value = 4;                 //Update the On-Screen slider
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_1);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_1);  // save the new size in PPM 
         }
 
         //Controls Scale 5?
         else if (currentControlsScale_int == 5) {     
             ControlsSizeField.text = "5";             //Update On-Screen Controls
             ControlsSlider.value = 5;                 //Update the On-Screen slider
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_5);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_5);  // save the new size in PPM 
         }
 
         //TODO: ERROR TRAP  --- IF THE Controls IS NOT 0 - 5
@@ -132,52 +132,42 @@ public class Settings : MonoBehaviour {
         if (ControlsSlider.value == 1) {
             resizecontrols.Resize(CONTROLS_SCALE_1);  // Update On-Screen Controls
             ControlsSizeField.text = "1";             // Update On-Screen Controls Size text
-            PlayerPrefsManager.SetControlsScale(1);   // save the new scale in PPM  
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_1);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsScale_Set(1);   // save the new scale in PPM  
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_1);  // save the new size in PPM 
 
         } else if (ControlsSlider.value == 2) {
             resizecontrols.Resize(CONTROLS_SCALE_2);
             ControlsSizeField.text = "2";             // Update On-Screen Controls Size text
-            PlayerPrefsManager.SetControlsScale(2);   // save the new scale in PPM 
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_2);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsScale_Set(2);   // save the new scale in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_2);  // save the new size in PPM 
 
         } else if (ControlsSlider.value == 3) {
             resizecontrols.Resize(CONTROLS_SCALE_3);
             ControlsSizeField.text = "3";             // Update On-Screen Controls Size text
-            PlayerPrefsManager.SetControlsScale(3);   // save the new scale in PPM 
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_3);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsScale_Set(3);   // save the new scale in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_3);  // save the new size in PPM 
 
         } else if (ControlsSlider.value == 4) {
             resizecontrols.Resize(CONTROLS_SCALE_4);
             ControlsSizeField.text = "4";             // Update On-Screen Controls Size text
-            PlayerPrefsManager.SetControlsScale(4);   // save the new scale in PPM 
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_4);  // save the new size in PPM 
+            PlayerPrefsManager.ControlsScale_Set(4);   // save the new scale in PPM 
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_4);  // save the new size in PPM 
 
         } else if (ControlsSlider.value == 5) {
             resizecontrols.Resize(CONTROLS_SCALE_5);
             ControlsSizeField.text = "5";             // Update On-Screen Controls Size text
-            PlayerPrefsManager.SetControlsScale(5);   // save the new scale in PPM  
-            PlayerPrefsManager.SetControlsSize(CONTROLS_SCALE_5);  // save the new size in PPM 
-
+            PlayerPrefsManager.ControlsScale_Set(5);   // save the new scale in PPM  
+            PlayerPrefsManager.ControlsSize_Set(CONTROLS_SCALE_5);  // save the new size in PPM 
         }
-
-
-
     }//ScaleTheControls() -end
 
 
 
 
-
-
-
-
     void OnDestroy() {
-
         //Remove Listeners           
         ControlsSlider.onValueChanged.RemoveListener(delegate { ScaleTheControls(); });           //Controls size slider
-
-        //Remove Listeners -end        
+       //Remove Listeners -end        
         }
 
 

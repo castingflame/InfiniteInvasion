@@ -7,7 +7,7 @@ public class MusicPlayer : MonoBehaviour {
 	void Start () {
 		if (instance != null && instance != this) {
 			Destroy (gameObject);
-			print ("Duplicate music player self-destructing!");
+			//Debug.Log("Duplicate music player self-destructing!");
 		} else {
 			instance = this;
 			GameObject.DontDestroyOnLoad(gameObject);
