@@ -12,9 +12,28 @@ public class PlayerPrefsManager : MonoBehaviour {
     const string HIGHSCORE_KEY = "highscore";
     const string CONTROLS_SCALE_KEY = "Controls_scale";
     const string CURRENT_CONTROLS_SIZE_KEY = "controls_size";
-    
-    
     //Key Pairs -end
+
+
+    public static void Initialise()
+    {
+
+        // Initialise Player Preferences
+        // If a key does not exist, create it.
+      
+        if (PlayerPrefs.HasKey("HIGHSCORE_KEY") == false)
+        {
+            Debug.Log("PPM: Missing HIGHSCORE_KEY");
+        }
+
+
+
+
+    }
+
+
+
+
 
 
 
