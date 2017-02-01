@@ -111,13 +111,30 @@ public class EnemyBehaviour_A : MonoBehaviour {
         nc.Score_Add(scoreValue);       //Enemy killed. Pass scoreValue to Number Cruncher
         AudioSource.PlayClipAtPoint(deathSound, transform.position);  //Play death SFX
         Destroy(gameObject);            //Destroy our enemy game object
+
+
+
+
+        //ALL ENEMIES DEAD?
+        //1. Search scene for gameobjects with the 'Enemy' Tag.
+        //2. If some found, do nothing
+        //3. If none found do a fancy screen message to show level cleared
+        //4. Load next level (scene)
+
+
+
         
+
+
+
+
+
     } //void Die -end
 
 
 
 
-} //THE END
+    } //THE END
 
 
 

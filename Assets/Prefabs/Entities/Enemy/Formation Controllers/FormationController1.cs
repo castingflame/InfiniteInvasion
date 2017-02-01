@@ -1,25 +1,54 @@
-﻿using UnityEngine;
+﻿/***************************************************************************
+Author: Paul Land
+Creation Date: 01/12/2016
+Game: Infinite Invasion
+Unity Script: FormationController1.cs
+Location: /_Scripts/Prefabs/Entities/Enemy/Formation Controllers
+Parent: Formation canvas (e.g. EnemyFormation1) parent of the Enemies.
+             
+Methods:    PUBLIC
+            -------
+                      
+            PRIVATE
+            -------
+   
+PROJECT PLAN 
+============
+Overview -
+
+      Job List
+      --------
+      1.
+
+*****************************************************************************/
+
+
+
+using UnityEngine;
 //using System.Collections;
 
 public class FormationController1 : MonoBehaviour
 {
-    //Declarations
 
-
+    /* -----< DECLARATIONS >----- */
+    //INSPECTOR
     //Enemy
     public GameObject enemyPrefab;          //Drop the Enemy Prefab here in the Unity Inspector   
-  
-    //
-
     public float formWidth;                 //Enemy formation width - NOTE! set in inspector
     public float formHeight;                //Enemy formation height - NOTE! set in inspector
     public bool movingRight = true;         //Enemy movement direction flag
     public float speed = 1f;                //Enemy movement speed
     public float spawnDelay = 0.5f;         //Enemy spawn creation delay
 
+    //SCRIPT
     private float xmax;                     //Left boundry of enemy formation
     private float xmin;                     //Right boundry of enemy formation
-    
+    /* -----< DECLARATIONS -END >----- */
+
+
+
+
+
     void Start() {
 
         //Edge of screen stuff
@@ -31,8 +60,10 @@ public class FormationController1 : MonoBehaviour
         //Edge of screen stuff - end
 
         SpawnUntilFull();  //Populate with enemies
-
     }
+
+
+
 
     //Draw a gizmo on the screen so that the enemy positions can me dragged around at design time
     public void OnDrawGizmos(){
@@ -63,10 +94,9 @@ public class FormationController1 : MonoBehaviour
 
 
         if (AllMembersDead()) {    //Are all the enemies dead?
-           // Debug.Log("Empty formation - All the Enemies are dead");
-
-            SpawnUntilFull();
-
+                                  
+            //SpawnUntilFull();
+            //Debug.Log("Aliens Dead!");
         }
 
     } //void Update -end
@@ -88,18 +118,12 @@ public class FormationController1 : MonoBehaviour
 
 
     void SpawnUntilFull() {
-
         Transform freePosition = NextFreePosition();  //Get the next available free enemy child position
-
         if (freePosition) {
             GameObject enemyShip = Instantiate(enemyPrefab, freePosition.position, Quaternion.identity) as GameObject;
             enemyShip.transform.parent = freePosition;         
         }
-
-        //Debug
-       
-        if (NextFreePosition()) {
-            
+        if (NextFreePosition()) {         
             Invoke("SpawnUntilFull", spawnDelay);    //Invokes the function again after period of time held in spawnDelay
             }
     }//SpawnUntilFull() -end
@@ -108,7 +132,6 @@ public class FormationController1 : MonoBehaviour
 
 
     Transform NextFreePosition() {   //Single enemy spawner function
-
         foreach (Transform EnemychildPosition in transform) {
             if (EnemychildPosition.childCount == 0) {   //child enemy 'position' no enemy in it?
                 return EnemychildPosition;  

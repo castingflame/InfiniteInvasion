@@ -22,7 +22,7 @@ public class PlayerPrefsManager : MonoBehaviour {
 
         //Player prefs initialisation for Player 'highscore'
         if (PlayerPrefs.HasKey(HIGHSCORE_KEY) == false){        //Prefs missing 
-            HighScore_Set(10);                              //Create a new Pref 
+            HighScore_Set(0);                              //Create a new Pref 
             //Debug.Log("PPM: Created Pref for highscore = " + HighScore_Get());
         }
         else if (PlayerPrefs.HasKey(HIGHSCORE_KEY) == true)     //Prefs found

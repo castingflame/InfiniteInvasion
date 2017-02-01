@@ -55,7 +55,7 @@ public class NumberCruncher : MonoBehaviour {
     public float playerHealth;                  // Default Player Health
     //Player Shield
     public float playerShield;                  // Default Player Shield
-                                                //Score
+    //ENEMIES
 
 
     //SCRIPT
@@ -68,6 +68,13 @@ public class NumberCruncher : MonoBehaviour {
     public float score;                         //Current score
     public float highScore;                     //Current highscore
     public float newHighScore;                  // 
+
+
+    //SCRIPT
+    public GameObject[] roster;                 //Array to hold a list of the found enemies with 'enemy' tag
+    
+
+
     /* -----< DECLARATIONS -END >----- */
 
 
@@ -80,16 +87,13 @@ public class NumberCruncher : MonoBehaviour {
         // Dont destroy the NumberCruncher when a new scene loads
         GameObject.DontDestroyOnLoad(gameObject);
        
-
-
-
         //INITIALISATION
         //SHIELD
         //Set the shield status to UP
         shieldStatus = true;
         //Set some initial default values for stuff
-        playerShield = 100;   //Tweekable in script
-        playerHealth = 100;   //Tweekable in script
+        playerShield = 1000;   //Tweekable in script
+        playerHealth = 3000;   //Tweekable in script
         //Save initial values for the UltimateStatusBar(s) Max value
         playerShieldMax = playerShield;
         playerHealthMax = playerHealth;
@@ -104,6 +108,11 @@ public class NumberCruncher : MonoBehaviour {
 
         //INITIALISATION -END
 
+       
+
+        
+
+
     }//Awake() -end
      /* -----< AWAKE FUNCTIONALITY -END >----- */
 
@@ -113,8 +122,11 @@ public class NumberCruncher : MonoBehaviour {
     /* -----< UPDATE FUNCTIONALITY >----- */
     private void Update() {
         Score_Display();   //Note: High Score 'display' is in scores logic
-        /* -----< UPDATE FUNCTIONALITY -END >----- */
+                           /* -----< UPDATE FUNCTIONALITY -END >----- */
 
+        //Keep a list of enemy count
+        
+        EnemyRosta_Get();
     }
 
 
@@ -330,13 +342,43 @@ public class NumberCruncher : MonoBehaviour {
 
 
 
+
+    /* -----< ROSTER FUNCTIONALITY >----- */
+    public void EnemyRosta_Set()
+    {
+           
+
+    }
+
+    
+
+
+    public void EnemyRosta_Get()
+    {       
+        roster = GameObject.FindGameObjectsWithTag("Enemy");
+        int i = 0;                                  //counter in increment        
+
+            foreach (Object Enemy in roster)
+            {          //Loop through objects to get a count of how many
+                i++;                                    //Increment loop
+                Debug.Log("EMEMIES = " + (i));
+                if (i == 0)
+                {
+                    Debug.Log("NO EMEMIES LEFT IN SCENE");    
+                }
+        } 
+    }
+    /* -----< ROSTER FUNCTIONALITY -END >----- */
+
+
+
+
+
+
     public void HighScore_Display(float newhighscore) {
         hud.HighScore_Display(newhighscore);
         //Debug.Log("New High Score" + newhighscore);
     }
-
-
-
     /* -----< HIGH SCORE FUNCTIONALITY -END >----- */
 
 

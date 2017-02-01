@@ -3,14 +3,20 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
-    public float damage = 100f;  //damage done by projectile - NOTE! set in inspector
+    public float damage = 100f;     //damage done by projectile - NOTE! set in inspector
 
-    public float GetDamage() {
+
+
+
+
+    public float GetDamage() {      //Returns the damage 
         return damage;
     }
 
 
-    public void Hit() {
+
+
+    public void Hit() {             
         Destroy(gameObject);
     }
 

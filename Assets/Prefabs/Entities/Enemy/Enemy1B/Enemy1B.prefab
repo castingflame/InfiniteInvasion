@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 50000010965646718}
   - component: {fileID: 61000012705832836}
   - component: {fileID: 114000011376455938}
-  - component: {fileID: 95000012101925928}
+  - component: {fileID: 95000010211593444}
   m_Layer: 9
-  m_Name: Enemy03
-  m_TagString: Untagged
+  m_Name: Enemy1B
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011311464088}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.043818, y: 0.47805166, z: 0}
   m_LocalScale: {x: 0.43, y: 0.43, z: 0.43}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.82, y: 0.84}
---- !u!95 &95000012101925928
+--- !u!95 &95000010211593444
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -87,7 +87,7 @@ Animator:
   m_GameObject: {fileID: 1000011311464088}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 45942d4acfe48bb4d8a3a14010a499f2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8a6dccc09a1af8a42a145e09659a23f5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,11 +107,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nc: {fileID: 0}
-  projectile: {fileID: 1000011652748308, guid: 450bb6f1c107a23419bf3d48b67fda41, type: 2}
+  projectile: {fileID: 1000011652748308, guid: daa70a7a299dffe468eeb336a07b6b48, type: 2}
   enemyhealth: 150
   projectileSpeed: 3
   shotsPerSecond: 0.1
-  scoreValue: 300
+  scoreValue: 200
   fireSound: {fileID: 8300000, guid: 637707aaccbb4bd4eae8cd8b6d02a010, type: 3}
   deathSound: {fileID: 8300000, guid: ab8b72874ad798c498b538c8f20831ab, type: 3}
 --- !u!212 &212000010563002898
@@ -145,7 +145,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1890496391
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3c9661b42766b39449c87ec39cf53a1d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dcd9428d94c11d54bbbda05c6254568f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

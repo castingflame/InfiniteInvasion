@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Idle
+  m_Name: Enemy1B_Arival
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,9 +19,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
+        value: {x: 4.62, y: 3.65, z: 0}
+        inSlope: {x: -4.62, y: -3.65, z: 0}
+        outSlope: {x: -4.62, y: -3.65, z: 0}
+        tangentMode: 0
+      - serializedVersion: 2
+        time: 1
         value: {x: 0, y: 0, z: 0}
-        inSlope: {x: -10.223429, y: 0, z: 0}
-        outSlope: {x: -10.223429, y: 0, z: 0}
+        inSlope: {x: -4.62, y: -3.65, z: 0}
+        outSlope: {x: -4.62, y: -3.65, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -49,7 +55,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -70,9 +76,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
+        value: 4.62
+        inSlope: -4.62
+        outSlope: -4.62
+        tangentMode: 34
+      - serializedVersion: 2
+        time: 1
         value: 0
-        inSlope: -10.223429
-        outSlope: -10.223429
+        inSlope: -4.62
+        outSlope: -4.62
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -86,9 +98,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
+        value: 3.65
+        inSlope: -3.65
+        outSlope: -3.65
+        tangentMode: 34
+      - serializedVersion: 2
+        time: 1
         value: 0
-        inSlope: -3.7845266
-        outSlope: -3.7845266
+        inSlope: -3.65
+        outSlope: -3.65
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -102,6 +120,12 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+      - serializedVersion: 2
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0

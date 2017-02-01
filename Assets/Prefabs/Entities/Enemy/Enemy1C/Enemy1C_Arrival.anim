@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Enemy2_Arival
+  m_Name: Enemy1C_Arrival
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,15 +19,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: {x: 4.62, y: 3.65, z: 0}
-        inSlope: {x: -4.62, y: -3.65, z: 0}
-        outSlope: {x: -4.62, y: -3.65, z: 0}
+        value: {x: 1.01, y: 2.86, z: 0}
+        inSlope: {x: -1.01, y: -2.86, z: 0}
+        outSlope: {x: -1.01, y: -2.86, z: 0}
         tangentMode: 0
       - serializedVersion: 2
         time: 1
         value: {x: 0, y: 0, z: 0}
-        inSlope: {x: -4.62, y: -3.65, z: 0}
-        outSlope: {x: -4.62, y: -3.65, z: 0}
+        inSlope: {x: -1.01, y: -2.86, z: 0}
+        outSlope: {x: -1.01, y: -2.86, z: 0}
         tangentMode: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -76,15 +76,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 4.62
-        inSlope: -4.62
-        outSlope: -4.62
+        value: 1.01
+        inSlope: -1.01
+        outSlope: -1.01
         tangentMode: 34
       - serializedVersion: 2
         time: 1
         value: 0
-        inSlope: -4.62
-        outSlope: -4.62
+        inSlope: -1.01
+        outSlope: -1.01
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -98,15 +98,15 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 2
         time: 0
-        value: 3.65
-        inSlope: -3.65
-        outSlope: -3.65
+        value: 2.86
+        inSlope: -2.86
+        outSlope: -2.86
         tangentMode: 34
       - serializedVersion: 2
         time: 1
         value: 0
-        inSlope: -3.65
-        outSlope: -3.65
+        inSlope: -2.86
+        outSlope: -2.86
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
