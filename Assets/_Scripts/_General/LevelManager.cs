@@ -9,9 +9,6 @@ public class LevelManager : MonoBehaviour {
     //DECLARATIONS -end
 
 
-
-
-
     //LOADLEVEL
     public void LoadLevel(string name){
 
@@ -49,7 +46,18 @@ public class LevelManager : MonoBehaviour {
     }
 
 
+    public void LoadNextScene() {
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);       //Goto the new next scene
+
+        }
 
 
 
-}
+
+
+
+
+
+
+    }

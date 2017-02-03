@@ -39,10 +39,18 @@ public class FormationController1 : MonoBehaviour
     public bool movingRight = true;         //Enemy movement direction flag
     public float speed = 1f;                //Enemy movement speed
     public float spawnDelay = 0.5f;         //Enemy spawn creation delay
+    public bool spawned = false;            //All spawned flag      
+
 
     //SCRIPT
     private float xmax;                     //Left boundry of enemy formation
     private float xmin;                     //Right boundry of enemy formation
+
+    public NumberCruncher nc;
+    private Enemy enemy;
+    
+    
+    
     /* -----< DECLARATIONS -END >----- */
 
 
@@ -50,6 +58,15 @@ public class FormationController1 : MonoBehaviour
 
 
     void Start() {
+        
+        //Find Objects
+        nc = GameObject.FindObjectOfType<NumberCruncher>();
+        enemy = GameObject.FindObjectOfType<Enemy>();
+
+
+        //nc.Enemies_Spawned(false);
+
+
 
         //Edge of screen stuff
         float distanceToCamera = transform.position.z - Camera.main.transform.position.z;
@@ -60,7 +77,11 @@ public class FormationController1 : MonoBehaviour
         //Edge of screen stuff - end
 
         SpawnUntilFull();  //Populate with enemies
-    }
+
+        spawned = true;
+        enemy.Formation_Spawned(GetInstanceID(), spawned);  //Report 'Spawned'  to enemy manager
+
+        }//Start() -end
 
 
 
@@ -95,7 +116,7 @@ public class FormationController1 : MonoBehaviour
 
         if (AllMembersDead()) {    //Are all the enemies dead?
                                   
-            //SpawnUntilFull();
+           
             //Debug.Log("Aliens Dead!");
         }
 
@@ -121,12 +142,19 @@ public class FormationController1 : MonoBehaviour
         Transform freePosition = NextFreePosition();  //Get the next available free enemy child position
         if (freePosition) {
             GameObject enemyShip = Instantiate(enemyPrefab, freePosition.position, Quaternion.identity) as GameObject;
-            enemyShip.transform.parent = freePosition;         
-        }
-        if (NextFreePosition()) {         
-            Invoke("SpawnUntilFull", spawnDelay);    //Invokes the function again after period of time held in spawnDelay
+            enemyShip.transform.parent = freePosition;
+
+            enemy.Enemy_Count();   //Get a count of enemies
+
             }
-    }//SpawnUntilFull() -end
+        if (NextFreePosition()) {
+
+  
+
+            Invoke("SpawnUntilFull", spawnDelay);    //Invokes the function again after period of time held in spawnDelay
+            }       
+        }//SpawnUntilFull() -end
+
 
 
 

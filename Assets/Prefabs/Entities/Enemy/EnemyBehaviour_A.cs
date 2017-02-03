@@ -19,16 +19,15 @@ Overview -
       
         Job List
         --------
-        1. Remove local changes and pipe them to NumberCruncher
-
+   
 
 *******************************************************************************************************/
 
 using UnityEngine;
-//using System.Collections;
+
 
 public class EnemyBehaviour_A : MonoBehaviour {
-
+    #region DECLARATIONS
     /* -----< DECLARATIONS >----- */
     //INSPECTOR
     //Script Connect
@@ -48,89 +47,77 @@ public class EnemyBehaviour_A : MonoBehaviour {
     public AudioClip fireSound;
     public AudioClip deathSound;
 
-    //LOCAL 
-    
+    //SCRIPT
+
     /* -----< DECLARATIONS - END >----- */
+    #endregion
 
 
-
-
+    #region START
     private void Start() {
-
         //Dynamically get objects and assign a handle
-         nc = GameObject.FindObjectOfType<NumberCruncher>();       //NumberCruncher
+        nc = GameObject.FindObjectOfType<NumberCruncher>();   
+        //Enemy
+        if (GetInstanceID() != 0) {                 //send instanceid to nc
+            nc.EnemyRoster_Add(GetInstanceID());
+            }
+        }//Start() -end
+    #endregion
 
-    }
 
-    
 
+    #region UPDATE
     void Update() {
-
         //Fire
         float probablity = Time.deltaTime * shotsPerSecond;   //Probablity of fire...
         if (Random.value < probablity) {
             Fire();
-        }
+            }
+        }//Update -end
+    #endregion
 
 
 
-    }
-
+    #region FIRE
     void Fire() {
         GameObject missile = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
         missile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
         AudioSource.PlayClipAtPoint(fireSound, transform.position);  //Play fire SFX
     }
+    #endregion
 
 
+
+    #region COLLIDED
     //Has this enemy been hit?
     void OnTriggerEnter2D(Collider2D collider) {
-
         Projectile missile = collider.gameObject.GetComponent<Projectile>();
-
         if (missile) {                              //Enemy hit by a Projectile?
-
             enemyhealth -= missile.GetDamage();     //Get the missile damage value and subtract it from the enemy health
             missile.Hit();                          //Distroy the players missile object
-
             if (enemyhealth <= 0) {                 //Enemy ready to die?
                 Die();
             }
          } //if (missile) -end
       } //OnTriggerEnter2D  -end
+    #endregion
 
 
 
 
-
-
+    #region DEAD
     //ENEMY DEAD!
     void Die() {
-
-       
+       // Debug.Log("Enemy ID:" + GetInstanceID());
         nc.Score_Add(scoreValue);       //Enemy killed. Pass scoreValue to Number Cruncher
         AudioSource.PlayClipAtPoint(deathSound, transform.position);  //Play death SFX
         Destroy(gameObject);            //Destroy our enemy game object
 
+        nc.EnemyRosta_Remove(GetInstanceID());  //Remove Invader from nc list
 
 
-
-        //ALL ENEMIES DEAD?
-        //1. Search scene for gameobjects with the 'Enemy' Tag.
-        //2. If some found, do nothing
-        //3. If none found do a fancy screen message to show level cleared
-        //4. Load next level (scene)
-
-
-
-        
-
-
-
-
-
-    } //void Die -end
-
+        } //void Die -end
+    #endregion
 
 
 

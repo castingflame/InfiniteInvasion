@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour {
 
     /* -----< DECLARATIONS >----- */
     //INSPECTOR
-    //Script Connections
-    public NumberCruncher nc;                   // Acess to object
     //Player
     public float padding = 0.5f;                // Player object padding to surroundings
      //Projectile
@@ -22,17 +20,11 @@ public class PlayerController : MonoBehaviour {
     //Sound
     public AudioClip hitSound;                  // drag and drop the clip into the inspector    
     public AudioClip fireSound;                 // drag and drop the clip into the inspector
-    //Handles
-    public LevelManager levelManager;
     //Shield
     public Transform shield;                    //Drop the 'Shield' on inspector
     public Transform shieldPivot;               //Drop the 'ShieldPivot' on inspector
     public float orbitDegreesPerSec = 360.0f;
-    //Joystick
-    public UltimateJoystick myJoystick;
-    //Fire Buton
-    public UltimateButton myFire;
-
+  
     //LOCAL
     //Player
     private float speed = 5.0f;
@@ -43,6 +35,11 @@ public class PlayerController : MonoBehaviour {
     //Controls
     float xmin;                                 // Touch Screen xmin;
     float xmax;                                 // Touch Screen xmax; 
+    //Number Cruncher
+    public NumberCruncher nc;                   // Acess to object
+    public UltimateJoystick myJoystick;           // Acess to object
+    public UltimateButton myFire;               // Acess to object
+    public LevelManager levelManager;
 
 
     /* -----< DECLARATIONS - END >----- */
@@ -51,7 +48,14 @@ public class PlayerController : MonoBehaviour {
 
     void Start() {
 
-      
+        //Find Objects
+        nc = GameObject.FindObjectOfType<NumberCruncher>();
+        myJoystick = GameObject.FindObjectOfType<UltimateJoystick>();
+        myFire = GameObject.FindObjectOfType<UltimateButton>();     
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
+
+
+
 
         //TODO: Add comments to whole section
         float distance = transform.position.z - Camera.main.transform.position.z;
@@ -70,9 +74,9 @@ public class PlayerController : MonoBehaviour {
         myFire.UpdatePositioning();         // ask UB to update our changes
         myJoystick.UpdatePositioning();     // ask UJ to update our changes
 
+       
 
-
-    }//Start() -end
+        }//Start() -end
 
 
 
