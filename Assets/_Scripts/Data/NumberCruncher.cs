@@ -88,6 +88,8 @@ public class NumberCruncher : MonoBehaviour {
     //Scene Array
     Dictionary<int, string[]> sceneArray = new Dictionary<int, string[]>(); //Dict to hold all scene names and indexes
 
+    public static NumberCruncher Instance;  //persistent
+
 
 
 
@@ -103,13 +105,21 @@ public class NumberCruncher : MonoBehaviour {
     /* -----< AWAKE FUNCTIONALITY >----- */
     void Awake() {
 
-        //
+        //Persistence
+        if (Instance) {
+            DestroyImmediate(gameObject);
+            }
+        else {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+            }
+            
+
+
+
+        //Scene stuff
         totalScenes = SceneManager.sceneCountInBuildSettings;
-        
-
-        // Dont destroy the NumberCruncher when a new scene loads
-        GameObject.DontDestroyOnLoad(gameObject);
-
+       
 
         //Am I connected to Level Manager? If not get a connection.
         if (!levelManager) { levelManager = GameObject.FindObjectOfType<LevelManager>(); }
@@ -129,10 +139,7 @@ public class NumberCruncher : MonoBehaviour {
         //INITIALISATION
         //Scene Indexes
         firstPlayableSceneIndex = (totalScenes - nonPlayableScenes) + 1;
-        Debug.Log("First Level index = " + firstPlayableSceneIndex);
-
-
-
+       
         //SHIELD
         //Set the shield status to UP
         shieldStatus = true;
@@ -146,6 +153,8 @@ public class NumberCruncher : MonoBehaviour {
         //SCORE
         Score_Reset();
         highScore = HighScore_Get();    // Get the high score
+
+
 
         //Enemies
         
@@ -412,7 +421,7 @@ public class NumberCruncher : MonoBehaviour {
 
     public void HighScore_Display(float newhighscore) {
         hud.HighScore_Display(newhighscore);
-        //Debug.Log("New High Score" + newhighscore);
+        
     }
     /* -----< HIGH SCORE FUNCTIONALITY -END >----- */
     #endregion HIGH SCORE
@@ -457,35 +466,23 @@ public class NumberCruncher : MonoBehaviour {
 
 
     private void NextLevel() {
-        activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        activeSceneIndex  = SceneManager.GetActiveScene().buildIndex;
 
-        if (activeSceneIndex < totalScenes -1 ) {
+        if (activeSceneIndex +1 < totalScenes) { 
             // load the next playable level
-            
-
-            int addScene = 1;
-            int thisScene = activeSceneIndex;
-            int newScene = thisScene + addScene;
-
-            Debug.Log("NC: activeSceneIndex + 1 = " + newScene);
-            Debug.Log("totalScenes = " + totalScenes);
-            Debug.Log("totalScenes = " + (totalScenes -1) );
-            Debug.Log("activeSceneIndex + 1 = " + (activeSceneIndex + 1));
-
-
-            SceneManager.LoadScene(newScene);
-
-
-
+            levelManager.LoadLevelIndex(activeSceneIndex+1);
             }
         else {
-            // load the first playable level
-            Debug.Log("NC: First Playable Level = " + firstPlayableSceneIndex);
 
-            SceneManager.LoadScene(firstPlayableSceneIndex);
-            
-            }
+            // load the first playable level
+
+            levelManager.LoadLevelIndex(firstPlayableSceneIndex);
+             }
+
+
+
         }
+
 
 
 

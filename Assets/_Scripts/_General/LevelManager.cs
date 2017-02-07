@@ -30,10 +30,10 @@ public class LevelManager : MonoBehaviour {
 
 
 
-
-
-
-
+    //LOADLEVEL
+    public void LoadLevelIndex(int index) {
+         SceneManager.LoadScene(index);       //Goto the new scene
+        }
 
 
 
