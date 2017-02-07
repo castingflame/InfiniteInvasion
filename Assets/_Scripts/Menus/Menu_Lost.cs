@@ -13,6 +13,7 @@ NOTES: Part of the Lost scene
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Menu_Lost : MonoBehaviour {
 
@@ -27,16 +28,23 @@ public class Menu_Lost : MonoBehaviour {
     //Local
     //Script Connections
     //Script Connect
-   
+
 
     /* -----< DECLARATIONS -END >----- */
 
+    private void Awake() {
+
+        Debug.Log("ML: My Lose = " + SceneManager.GetActiveScene().buildIndex);
+
+        Debug.Log("Bollox");
+        }
 
 
 
     // Use this for initialization
-    void Start () {      
+    void Start () {
 
+        #region Number Cruncher Destroy
         nc = FindObjectOfType<NumberCruncher>();        //Find the running NumberCruncher
 
         if (GameObject.Find("NumberCruncher") != null)  // If NumberCruncher DOES exist
@@ -55,13 +63,17 @@ public class Menu_Lost : MonoBehaviour {
         {
             Debug.LogError("Could not find a NumberCruncher to open");
         }
-
-    }//Start() -end
-
+        #endregion
 
 
 
-}//THE END
+     
+        }//Start() -end
+
+
+
+
+    }//THE END
 
 
 

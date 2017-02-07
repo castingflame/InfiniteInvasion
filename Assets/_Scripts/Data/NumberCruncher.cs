@@ -43,7 +43,7 @@ DONE  1. Write default methods for ...
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;   //this is for 'lists' type of array
-
+using UnityEngine.SceneManagement;
 public class NumberCruncher : MonoBehaviour {
 
 
@@ -77,7 +77,20 @@ public class NumberCruncher : MonoBehaviour {
     //All SpawnedFlag
     public bool enemySpawned = false;
     //Level Complete
-    public float levelCompletePause = 5f;
+    public float levelCompletePause = 4f;
+
+
+    //private fields to retain some useful settings/info
+    private int totalScenes;
+    private int nonPlayableScenes = 4;
+    private int activeSceneIndex;
+    public static int firstPlayableSceneIndex;
+    //Scene Array
+    Dictionary<int, string[]> sceneArray = new Dictionary<int, string[]>(); //Dict to hold all scene names and indexes
+
+
+
+
 
     /* -----< DECLARATIONS -END >----- */
     #endregion DECLARATIONS
@@ -89,6 +102,10 @@ public class NumberCruncher : MonoBehaviour {
     #region AWAKE
     /* -----< AWAKE FUNCTIONALITY >----- */
     void Awake() {
+
+        //
+        totalScenes = SceneManager.sceneCountInBuildSettings;
+        
 
         // Dont destroy the NumberCruncher when a new scene loads
         GameObject.DontDestroyOnLoad(gameObject);
@@ -110,6 +127,11 @@ public class NumberCruncher : MonoBehaviour {
     private void Start()
     {
         //INITIALISATION
+        //Scene Indexes
+        firstPlayableSceneIndex = (totalScenes - nonPlayableScenes) + 1;
+        Debug.Log("First Level index = " + firstPlayableSceneIndex);
+
+
 
         //SHIELD
         //Set the shield status to UP
@@ -430,13 +452,44 @@ public class NumberCruncher : MonoBehaviour {
         enemySpawned = status;
         }
 
-        #endregion ENEMY
+    #endregion ENEMY
 
 
 
-    private void NextLevel(){
-         levelManager.LoadNextScene();
+    private void NextLevel() {
+        activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (activeSceneIndex < totalScenes -1 ) {
+            // load the next playable level
+            
+
+            int addScene = 1;
+            int thisScene = activeSceneIndex;
+            int newScene = thisScene + addScene;
+
+            Debug.Log("NC: activeSceneIndex + 1 = " + newScene);
+            Debug.Log("totalScenes = " + totalScenes);
+            Debug.Log("totalScenes = " + (totalScenes -1) );
+            Debug.Log("activeSceneIndex + 1 = " + (activeSceneIndex + 1));
+
+
+            SceneManager.LoadScene(newScene);
+
+
+
+            }
+        else {
+            // load the first playable level
+            Debug.Log("NC: First Playable Level = " + firstPlayableSceneIndex);
+
+            SceneManager.LoadScene(firstPlayableSceneIndex);
+            
+            }
         }
+
+
+
+ 
 
 
 
