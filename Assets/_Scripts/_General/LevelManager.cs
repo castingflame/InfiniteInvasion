@@ -8,6 +8,8 @@ public class LevelManager : MonoBehaviour {
 
 
 
+    public NumberCruncher nc;
+
     //DECLARATIONS
     public static string PreviousSceneName;         //Previous Scene Name for Navigation purposes (static)
     public static int loseIndex;
@@ -24,8 +26,13 @@ public class LevelManager : MonoBehaviour {
 
 
     void Start() {
+           
+            nc = GameObject.FindObjectOfType<NumberCruncher>();
+            
+            if (nc != null) {
+            nc.lmIndex = SceneManager.GetActiveScene().buildIndex;
+            }
 
-       
         }
 
 

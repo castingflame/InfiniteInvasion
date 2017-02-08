@@ -51,6 +51,7 @@ public class HUD : MonoBehaviour {
     public Text invasionLevel_txt;
     public Text levelComplete_txt;
     public Text invaderCount_txt;
+    public Text level_txt;
    
 
 
@@ -176,6 +177,12 @@ public class HUD : MonoBehaviour {
 
 
 
+    // Display the Level
+    public void Level_Display(int level) {
+        if (level_txt) {
+            level_txt.text = level.ToString();
+            }
+        }//Level_Display() -end
 
 
 

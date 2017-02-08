@@ -49,6 +49,8 @@ public class NumberCruncher : MonoBehaviour {
 
     #region DECLARATIONS
     /* -----< DECLARATIONS >----- */
+    //Persistance
+    public static NumberCruncher Instance;      //persistent
     //INSPECTOR
     //Player Health                                         
     public float playerHealth;                  // Default Player Health
@@ -78,18 +80,14 @@ public class NumberCruncher : MonoBehaviour {
     public bool enemySpawned = false;
     //Level Complete
     public float levelCompletePause = 4f;
-
-
-    //private fields to retain some useful settings/info
+    private int gameLevel = 1;                      
+    //Scenes
     private int totalScenes;
     private int nonPlayableScenes = 4;
-    private int activeSceneIndex;
+    public int activeSceneIndex;
     public static int firstPlayableSceneIndex;
-    //Scene Array
-    Dictionary<int, string[]> sceneArray = new Dictionary<int, string[]>(); //Dict to hold all scene names and indexes
-
-    public static NumberCruncher Instance;  //persistent
-
+    public int lmIndex;                             // Updated by LevelManager when level changes
+    
 
 
 
@@ -191,6 +189,18 @@ public class NumberCruncher : MonoBehaviour {
             Invoke("NextLevel", levelCompletePause);
             
             }
+
+
+
+            //Scene - level change & update
+            if (activeSceneIndex != lmIndex) {
+            activeSceneIndex = lmIndex; // update it with the number provided by Level Manager
+            Level_Display();            // update the hud
+            }
+
+        //Debug.Log("lmIndex" + lmIndex + "   active scene index " + activeSceneIndex);
+
+
 
 
 
@@ -465,28 +475,36 @@ public class NumberCruncher : MonoBehaviour {
 
 
 
+
+
+
     private void NextLevel() {
         activeSceneIndex  = SceneManager.GetActiveScene().buildIndex;
 
-        if (activeSceneIndex +1 < totalScenes) { 
+        if (activeSceneIndex +1 < totalScenes) {            
             // load the next playable level
             levelManager.LoadLevelIndex(activeSceneIndex+1);
+
+            gameLevel++;    // increment game level counter
+
             }
         else {
 
             // load the first playable level
 
             levelManager.LoadLevelIndex(firstPlayableSceneIndex);
-             }
-
-
-
+            gameLevel++;    // increment game level counter
+            }
         }
 
 
 
 
- 
+
+    public void Level_Display() {
+        hud.Level_Display(gameLevel);
+        }
+
 
 
 
