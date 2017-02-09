@@ -84,6 +84,9 @@ public class PlayerController : MonoBehaviour {
 
     void Update () {
 
+        
+
+
 
 #if UNITY_STANDALONE     // Build for all Windows, Mac or Linux Standalone platforms (Input controls)
 
@@ -118,8 +121,7 @@ public class PlayerController : MonoBehaviour {
 
 
 #else   // Build for all touch platforms (Input controls)
-        //TODO: Add comments to whole section
-        
+            
 
         //Player movement 
         float shipMovement = UltimateJoystick.GetHorizontalAxis("PlayerJoystick");
@@ -135,10 +137,11 @@ public class PlayerController : MonoBehaviour {
         //Projectile
         if (UltimateButton.GetButtonDown("PlayerFire")) {               
             InvokeRepeating("Fire", 0.000001f, firingRate);
-            //Debug.Log("Fire Pressed");            
+            Debug.Log("Fire Pressed");            
             }
+       
             if (UltimateButton.GetButtonUp("PlayerFire")) {
-            //Debug.Log("Fire Released");
+            Debug.Log("Fire Released");
             CancelInvoke("Fire");
         }//Projectile -end
 

@@ -34,9 +34,6 @@ public class Menu_Lost : MonoBehaviour {
 
     private void Awake() {
 
-        Debug.Log("ML: My Lose = " + SceneManager.GetActiveScene().buildIndex);
-
-        Debug.Log("Bollox");
         }
 
 
