@@ -56,10 +56,18 @@ public class EnemyBehaviour_A : MonoBehaviour {
     #region START
     private void Start() {
         //Dynamically get objects and assign a handle
+
+        
         nc = GameObject.FindObjectOfType<NumberCruncher>();   
+        
+        
+        
+        
+        
         //Enemy
         if (GetInstanceID() != 0) {                 //send instanceid to nc
             nc.EnemyRoster_Add(GetInstanceID());
+
             }
         }//Start() -end
     #endregion
@@ -68,6 +76,13 @@ public class EnemyBehaviour_A : MonoBehaviour {
 
     #region UPDATE
     void Update() {
+
+
+         //nc = GameObject.FindObjectOfType<NumberCruncher>(); 
+
+
+
+
         //Fire
         float probablity = Time.deltaTime * shotsPerSecond;   //Probablity of fire...
         if (Random.value < probablity) {

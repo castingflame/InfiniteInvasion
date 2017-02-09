@@ -63,7 +63,12 @@ public class HUD : MonoBehaviour {
     //Score
     private string score;
     private string highscore;
-  
+
+    //History values
+    public float historyPlayerHealth;
+    public float historyPlayerShield;
+
+
 
     /* -----< DECLARATIONS - END >----- */
 
@@ -113,17 +118,14 @@ public class HUD : MonoBehaviour {
 
 
 
-    /* -----< SHIELD FUNCTIONALITY >----- */
+    #region SHIELD
     // Display the shield value
     public void PlayerShield_Display(float shield, float max) {
-
-       UltimateStatusBar.UpdateStatus("PlayerShield", shield, max); 
-
+        historyPlayerShield = shield;
+        Debug.Log("hud: historyPlayerShield " + historyPlayerShield);
+        UltimateStatusBar.UpdateStatus("PlayerShield", shield, max);        
     }//Shield_Display() -end
-     /* -----< SHIELD FUNCTIONALITY -END>----- */
-
-
-
+    #endregion SHIELD
 
 
 
@@ -185,11 +187,10 @@ public class HUD : MonoBehaviour {
         }//Level_Display() -end
 
 
+  
 
 
 
 
 
-
-
-    }//THE END
+}//THE END

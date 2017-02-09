@@ -12,7 +12,7 @@ Methods:    PUBLIC
             -------
             Score_Get(), Score_Add(), Score_Subtract(), Score_Display(), 
             HighScore_Get(), HighScore_Set(), HighScore_Display(), 
-            Shield_GetValue(), Shield_SetValue(), Shield_GetStatus(), Shield_SetStatus(),
+            Shield_GetValue(), Shield_SetValue(), PlayerShield_GetStatus(), Shield_SetStatus(),
             Health_GetValue(), Health_SetValue(),
             InvasionLevel_GetValue(), InvasionLevel_SetValue(),
             
@@ -53,9 +53,9 @@ public class NumberCruncher : MonoBehaviour {
     public static NumberCruncher Instance;      //persistent
     //INSPECTOR
     //Player Health                                         
-    public float playerHealth;                  // Default Player Health
+    public float playerHealth;                  // Default Player Health. USB reads this on load
     //Player Shield
-    public float playerShield;                  // Default Player Shiel
+    public float playerShield;                  // Default Player Shield. USB reads this on load
     //Player Health                                         
     public float playerHealthMax;               // Save Health Starting value for USB
     //Player Shield
@@ -100,7 +100,7 @@ public class NumberCruncher : MonoBehaviour {
 
 
     #region AWAKE
-    /* -----< AWAKE FUNCTIONALITY >----- */
+    
     void Awake() {
 
         //Persistence
@@ -127,7 +127,7 @@ public class NumberCruncher : MonoBehaviour {
 
 
         }//Awake() -end
-         /* -----< AWAKE FUNCTIONALITY -END >----- */
+        
     #endregion AWAKE
 
 
@@ -137,7 +137,7 @@ public class NumberCruncher : MonoBehaviour {
         //INITIALISATION
         //Scene Indexes
         firstPlayableSceneIndex = (totalScenes - nonPlayableScenes) + 1;
-       
+
         //SHIELD
         //Set the shield status to UP
         shieldStatus = true;
@@ -148,17 +148,19 @@ public class NumberCruncher : MonoBehaviour {
         playerShieldMax = playerShield;
         playerHealthMax = playerHealth;
 
+
         //SCORE
         Score_Reset();
         highScore = HighScore_Get();    // Get the high score
-
-
-
-        //Enemies
         
 
-    //INITIALISATION -END
-    }
+        
+
+
+
+
+        //INITIALISATION -END
+        }
 
 
 
@@ -186,7 +188,7 @@ public class NumberCruncher : MonoBehaviour {
             //enemyRoster.Clear();    //Clear the list
             //hud.EnemyCount_Display(enemyRoster.Count); //update the hud
             enemySpawned = false;   //Reset the All Spawned flag
-            Invoke("NextLevel", levelCompletePause);
+            Invoke("Level_Next", levelCompletePause);
             
             }
 
@@ -198,14 +200,11 @@ public class NumberCruncher : MonoBehaviour {
             Level_Display();            // update the hud
             }
 
-        //Debug.Log("lmIndex" + lmIndex + "   active scene index " + activeSceneIndex);
-
-
-
+        
 
 
         }
-    /* -----< UPDATE FUNCTIONALITY -END >----- */ 
+    /* -----< UPDATE FUNCTIONALITY -END >----- */
     #endregion UPDATE
 
 
@@ -214,8 +213,6 @@ public class NumberCruncher : MonoBehaviour {
 
 
     #region SHIELD
-
-    /* -----< SHIELD FUNCTIONALITY >----- */
 
     // Get the shield value
     public float PlayerShield_GetValue() {
@@ -227,27 +224,25 @@ public class NumberCruncher : MonoBehaviour {
 
 
 
-    // Set the shield value
-    public void PlayerShield_SetValue(float shield) {
-        //A Set the sheild value requested
-        //1.set value
-        //2.Return it to DM
-
-    }//PlayerShield_SetValue() -end
-
-
-
-
     // Get status of shield
-    public bool Shield_GetStatus() {
+    public bool PlayerShield_GetStatus() {
 
         //work out the shield status
         bool shieldstatus = true;    //TEMP SET SOMETHING TO TEST THE LOGIC
       
         return shieldstatus;  // return the shield status
 
-    }//Shield_GetStatus() -end
-     /* -----< SHIELD FUNCTIONALITY -END >----- */
+    }//PlayerShield_GetStatus() -end
+     
+   
+
+
+    // PlayerShield Display
+    public void PlayerShield_Display(float value, float max) {
+        hud.PlayerShield_Display(value, max);
+        }
+    
+    
     #endregion SHIELD
 
 
@@ -258,7 +253,7 @@ public class NumberCruncher : MonoBehaviour {
     /* -----< HEALTH FUNCTIONALITY >----- */
 
     // Get the health value
-    public float Health_GetValue(float healthvalue) {
+    public float PalyerHealth_GetValue(float healthvalue) {
         //A health value requested
         //1.get value
         //2.Return it to DM
@@ -268,14 +263,23 @@ public class NumberCruncher : MonoBehaviour {
 
 
     // Set the shield value
-    public void Health_SetValue(float health) {
+    public void PlayerHealth_SetValue(float health) {
         //A Set the health value requested
         //1.set value
         //2.Return it to DM
 
     }//Health_SetValue() -end
 
-    /* -----< HEALTH FUNCTIONALITY -END >----- */
+   
+    // PlayerHealth Display
+    public void PlayerHealth_Display(float value, float max) {
+        hud.PlayerHealth_Display(value, max);
+        }
+
+
+
+
+
     #endregion HEALTH
 
 
@@ -320,7 +324,7 @@ public class NumberCruncher : MonoBehaviour {
 
             playerShield -= hit;        //subtract hit value from shield
             // Debug.Log("NC:Shield Status: " + shieldStatus + " value:" + playerShield);
-            hud.PlayerShield_Display(playerShield, playerShieldMax);
+            PlayerShield_Display(playerShield, playerShieldMax);
             if (playerShield <= 0) {    //Shield Down?
                 shieldStatus = false;
             }
@@ -330,7 +334,7 @@ public class NumberCruncher : MonoBehaviour {
 
             playerHealth -= hit;        //subtract hit value from health
             // Debug.Log("NC:Health value:" + playerHealth);
-            hud.PlayerHealth_Display(playerHealth, playerHealthMax);
+            PlayerHealth_Display(playerHealth, playerHealthMax);
 
             if (playerHealth <= 0) {        //Player Dead?
                 Destroy(GameObject.Find("Player")); //TODO: Needs massive explosion!
@@ -477,15 +481,15 @@ public class NumberCruncher : MonoBehaviour {
 
 
 
-
-    private void NextLevel() {
+    #region LEVEL
+    private void Level_Next() {
         activeSceneIndex  = SceneManager.GetActiveScene().buildIndex;
 
         if (activeSceneIndex +1 < totalScenes) {            
             // load the next playable level
             levelManager.LoadLevelIndex(activeSceneIndex+1);
-
-            gameLevel++;    // increment game level counter
+            Level_SetupValues();
+          
 
             }
         else {
@@ -493,7 +497,9 @@ public class NumberCruncher : MonoBehaviour {
             // load the first playable level
 
             levelManager.LoadLevelIndex(firstPlayableSceneIndex);
+
             gameLevel++;    // increment game level counter
+
             }
         }
 
@@ -506,6 +512,21 @@ public class NumberCruncher : MonoBehaviour {
         }
 
 
+
+    
+    // A new level has been loaded. 
+    private void Level_SetupValues() {
+        Debug.Log("... Level Loaded");
+        //Level
+        gameLevel++;    // increment game level counter
+        //PlayerShield_Display(100, playerShieldMax);
+        //PlayerHealth_Display(playerShield, playerShieldMax);
+
+        //Debug.Log("shield " + playerShield);
+
+
+        }
+    #endregion
 
 
 

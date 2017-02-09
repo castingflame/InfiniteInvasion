@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 225741711906348272}
   - component: {fileID: 114614141045406904}
   - component: {fileID: 95424754889321638}
+  - component: {fileID: 114981821999104344}
   m_Layer: 5
   m_Name: PlayerHealth_StatusBar
   m_TagString: Untagged
@@ -249,6 +250,7 @@ GameObject:
   - component: {fileID: 225739327790676294}
   - component: {fileID: 114741354866807260}
   - component: {fileID: 95641391892566654}
+  - component: {fileID: 114973488082287702}
   m_Layer: 5
   m_Name: PlayerShield_StatusBar
   m_TagString: Untagged
@@ -514,7 +516,7 @@ MonoBehaviour:
   alternateStateColorAlt: {r: 1, g: 1, b: 1, a: 1}
   flashing: 0
   flashingSpeed: 1
-  smoothFill: 1
+  smoothFill: 0
   smoothFillDuration: 1
   fillConstraint: 0
   fillConstraintMin: 0
@@ -1221,7 +1223,7 @@ MonoBehaviour:
   alternateStateColorAlt: {r: 1, g: 1, b: 1, a: 1}
   flashing: 0
   flashingSpeed: 1
-  smoothFill: 1
+  smoothFill: 0
   smoothFillDuration: 1
   fillConstraint: 0
   fillConstraintMin: 0
@@ -1257,6 +1259,30 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114973488082287702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1637124300005188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38408c51b34032543918607982ab496c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nc: {fileID: 0}
+--- !u!114 &114981821999104344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1440138738893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81cd56b1b62fc941889207d9d8d5c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nc: {fileID: 0}
 --- !u!222 &222024314663376496
 CanvasRenderer:
   m_ObjectHideFlags: 1
