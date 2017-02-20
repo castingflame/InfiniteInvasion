@@ -180,7 +180,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010683486768}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.066703, y: -6.4286375, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919707349250330}
@@ -380,14 +380,14 @@ MonoBehaviour:
   projectileDamage: 100
   hitSound: {fileID: 8300000, guid: 1561041746da1c94eb1054efc7420ab1, type: 3}
   fireSound: {fileID: 8300000, guid: 6413603c51b7828409d337905a12f51a, type: 3}
-  levelManager: {fileID: 0}
   shield: {fileID: 4210370422592862}
   shieldPivot: {fileID: 4919707349250330}
   orbitDegreesPerSec: 360
-  myJoystick: {fileID: 0}
-  myFire: {fileID: 0}
   projectile: {fileID: 1000011652748308, guid: 8219de6664cd0e5439f83c9cee49e11f, type: 2}
   nc: {fileID: 0}
+  myJoystick: {fileID: 0}
+  myFire: {fileID: 0}
+  levelManager: {fileID: 0}
 --- !u!122 &122041747930313710
 Halo:
   m_ObjectHideFlags: 1
@@ -507,7 +507,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1972517837
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3440c71d11e9ed04781978790fffb169, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c25ea53b98660234e8c265017d68c575, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

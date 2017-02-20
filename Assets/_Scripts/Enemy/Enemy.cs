@@ -60,6 +60,8 @@ public class Enemy : MonoBehaviour {
 
         //All Spawned?
         if (formationStatus.Count == children2.Count && allSpawned == false) {
+            
+            
             //Debug.LogWarning("ALL Formations Spwaned! (" + formationStatus.Count + ")" ); 
             nc.Enemy_Spawned(true); //Tell nc All Spawned
             allSpawned = true;  //set flag to stop checking the All Spawned state.
